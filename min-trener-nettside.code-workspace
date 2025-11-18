@@ -1,0 +1,20 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "liveServer.settings.port": 5500,
+    "editor.formatOnSave": true,
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "es5"
+  },
+  "extensions": {
+    "recommendations": [
+      "ritwickdey.liveServer",
+      "esbenp.prettier-vscode",
+      "formulahendry.auto-rename-tag"
+    ]
+  }
+}

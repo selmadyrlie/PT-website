@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ditt Navn | Personlig Trener & Online Coach</title>
+  <meta name="description" content="Personlig trener og online coach – skreddersydde treningsprogram, PT-timer og oppfølging som gir varige resultater." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ditt Navn – Personlig Trener" />
+  <meta property="og:description" content="Bli sterkere, tryggere og få treningsgleden tilbake – på dine premisser." />
+  <meta property="og:image" content="assets/portrait.webp" />
+  <meta property="og:url" content="https://ditt-navn.netlify.app" />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>flexed biceps</text></svg>">
+
+  <link rel="stylesheet" href="styles.css" />
+
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#" class="brand">
+      <div class="brand-logo">DT</div>
+      <div>
+        <div class="brand-name">Ditt Navn</div>
+        <div class="brand-subtitle">Personlig Trener &amp; Online Coach</div>
+      </div>
+    </a>
+    <nav>
+      <a href="#om">Om meg</a>
+      <a href="#tjenester">Tjenester</a>
+      <a href="#priser">Priser</a>
+      <a href="#anbefalinger">Anbefalinger</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+
+    <!-- Dark mode toggle -->
+<button id="theme-toggle" aria-label="Bytt til mørk eller lys modus">
+  <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="12" cy="12" r="5"/>
+    <line x1="12" y1="1" x2="12" y2="3"/>
+    <line x1="12" y1="21" x2="12" y2="23"/>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+    <line x1="1" y1="12" x2="3" y2="12"/>
+    <line x1="21" y1="12" x2="23" y2="12"/>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+  </svg>
+  <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+</button>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="hero">
+    <div>
+      <h1>Bli sterkere, tryggere og få treningsgleden tilbake – på dine premisser</h1>
+      <p>Jeg hjelper deg med skreddersydd trening og oppfølging som passer inn i din hverdag – enten du er nybegynner eller erfaren.</p>
+      <a href="#kontakt" class="btn-primary">Book uforpliktende prat</a>
+    </div>
+    <div class="hero-img-box">
+      <img src="assets/portrait.webp" alt="Ditt Navn – personlig trener" loading="lazy" />
+    </div>
+  </section>
+
+  <section id="om">
+    <h2>Om meg</h2>
+    <p class="sec-intro">
+      Hei! Jeg er sertifisert personlig trener med lidenskap for styrketrening, bevegelse og bærekraftige vaner. 
+      Min filosofi er enkel: små steg hver dag slår perfekte planer som aldri blir gjennomført.
+    </p>
+  </section>
+
+  <section id="tjenester">
+    <h2>Tjenester</h2>
+    <p class="sec-intro">Velg opplegget som passer best for deg og din hverdag.</p>
+    <div class="grid-3">
+      <div class="card"><h3>1:1 Personlig trening</h3><p>Individuelle timer i studio eller utendørs.</p><ul><li>Skreddersydd program</li><li>Teknikkoppfølging</li><li>Fleksibel booking</li></ul></div>
+      <div class="card"><h3>Online Coaching</h3><p>Full oppfølging uansett hvor du trener.</p><ul><li>Personlig app-program</li><li>Ukentlig check-in</li><li>Ubegrenset støtte</li></ul></div>
+      <div class="card"><h3>Kombinasjonspakke</h3><p>Det beste fra begge verdener.</p><ul><li>PT-timer + online</li><li>Maksimal progresjon</li><li>Raske justeringer</li></ul></div>
+    </div>
+  </section>
+
+  <section id="priser">
+    <h2>Priser & pakker</h2>
+    <p class="sec-intro">Transparent prising – ingen skjulte kostnader.</p>
+    <div class="grid-3">
+      <div class="card"><h3>Kom-i-gang-pakke</h3><p>3 PT-timer + program</p><p class="price">fra 2 290 kr</p></div>
+      <div class="card"><h3>3-måneders oppfølging</h3><p>8 PT-timer + kontinuerlig støtte</p><p class="price">fra 5 990 kr</p></div>
+      <div class="card"><h3>Online Coaching</h3><p>Fleksibelt og rimelig</p><p class="price">999 kr / mnd</p></div>
+    </div>
+  </section>
+
+<!-- ========== MANUAL + TOUCH CAROUSEL ========== -->
+<section id="anbefalinger">
+  <div class="container">
+    <h2>Hva kundene mine sier</h2>
+    <p class="sec-intro">Ekte resultater fra ekte mennesker</p>
+
+    <div class="carousel-container">
+      <button class="carousel-btn prev" aria-label="Forrige">Previous</button>
+      <button class="carousel-btn next" aria-label="Neste">Next</button>
+
+      <div class="testimonial-track">
+        <!-- Review 1 -->
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">“Etter bare 3 måneder har jeg gått ned 12 kg og føler meg sterkere enn noensinne. Beste treneren jeg har hatt!”</p>
+          <div class="reviewer">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop&crop=face" alt="Camilla">
+            <div><strong>Camilla S.</strong><br><span>Mamma & kontoransatt</span></div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">“Fra å være redd for styrkerommet til å løfte mer enn jeg noen gang trodde var mulig. Anbefales på det sterkeste!”</p>
+          <div class="reviewer">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" alt="Thomas">
+            <div><strong>Thomas L.</strong><br><span>Tidligere sofaatlet</span></div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">“Endelig en trener som lytter og tilpasser seg livet mitt. Har fått tilbake treningsgleden!”</p>
+          <div class="reviewer">
+            <img src="https://images.unsplash.com/photo-1580489940927-4777b4e0e0c8?w=200&h=200&fit=crop&crop=face" alt="Mari">
+            <div><strong>Mari H.</strong><br><span>Online coaching 6 mnd</span></div>
+          </div>
+        </div>
+
+        <!-- Add more reviews here if you want -->
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section id="kontakt">
+    <h2>Kontakt meg</h2>
+    <p class="sec-intro">Fyll inn skjemaet – svarer vanligvis innen 24 timer.</p>
+    <div class="contact-grid">
+      <div>
+        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact" />
+          <p hidden><input name="bot-field" /></p>
+          <input type="text" name="navn" placeholder="Ditt navn" required />
+          <input type="email" name="epost" placeholder="Din e-post" required />
+          <textarea name="melding" placeholder="Fortell litt om deg selv og hva du ønsker hjelp med..." required></textarea>
+          <button type="submit" class="btn-primary">Send melding</button>
+        </form>
+      </div>
+      <div class="card">
+        <h3>Kontaktinfo</h3>
+        <p><strong>E-post:</strong> <a href="mailto:dittnavn@gmail.com">dittnavn@gmail.com</a></p>
+        <p><strong>Telefon:</strong> <a href="tel:+4799999999">+47 999 99 999</a></p>
+        <p><strong>Sosiale medier:</strong><br>
+          <a href="https://instagram.com/dittinstagram" target="_blank" rel="noopener">Instagram</a> • 
+          <a href="https://facebook.com/dittfacebook" target="_blank" rel="noopener">Facebook</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    © 2025 Ditt Navn – Personlig Trener &amp; Online Coach
+  </div>
+</footer>
+
+<!-- Dark mode toggle script -->
+<script>
+  const toggle = document.getElementById("theme-toggle");
+  const root = document.documentElement;
+
+  // Set initial state
+  if (localStorage.theme === "dark" || (!localStorage.theme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+    root.classList.add("dark");
+  }
+
+  toggle.addEventListener("click", () => {
+    root.classList.toggle("dark");
+    localStorage.theme = root.classList.contains("dark") ? "dark" : "light";
+  });
+</script>
+
+<script>
+  const track = document.querySelector('.testimonial-track');
+  const cards = document.querySelectorAll('.testimonial-card');
+  const prevBtn = document.querySelector('.carousel-btn.prev');
+  const nextBtn = document.querySelector('.carousel-btn.next');
+  
+  let index = 0;
+  const cardWidth = cards[0].offsetWidth + 32; // card + gap
+
+  function updateCarousel() {
+    track.style.transform = `translateX(${-index * cardWidth}px)`;
+  }
+
+  nextBtn.addEventListener('click', () => {
+    if (index < cards.length - 1) {
+      index++;
+    } else {
+      index = 0; // loop back
+    }
+    updateCarousel();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    if (index > 0) {
+      index--;
+    } else {
+      index = cards.length - 1;
+    }
+    updateCarousel();
+  });
+
+  // Touch/swipe support for mobile & trackpad
+  let startX = 0;
+  track.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+  track.addEventListener('touchend', e => {
+    const endX = e.changedTouches[0].clientX;
+    if (startX - endX > 50) nextBtn.click();
+    if (endX - startX > 50) prevBtn.click();
+  });
+</script>
+
+</body>
+</html>
