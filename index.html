@@ -24,10 +24,10 @@
 <header>
   <div class="container nav">
     <a href="#" class="brand">
-      <div class="brand-logo">DT</div>
+      <div class="brand-logo">LR</div>
       <div>
-        <div class="brand-name">Ditt Navn</div>
-        <div class="brand-subtitle">Personlig Trener &amp; Online Coach</div>
+        <div class="brand-name">Linn Røymstad</div>
+        <div class="brand-subtitle">Personlig Trener, Online Coach &amp; Bedriftstrening</div>
       </div>
     </a>
     <nav>
@@ -106,8 +106,16 @@
     <p class="sec-intro">Ekte resultater fra ekte mennesker</p>
 
     <div class="carousel-container">
-      <button class="carousel-btn prev" aria-label="Forrige">Previous</button>
-      <button class="carousel-btn next" aria-label="Neste">Next</button>
+      <button class="carousel-btn prev" aria-label="Forrige">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <button class="carousel-btn next" aria-label="Neste">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
 
       <div class="testimonial-track">
         <!-- Review 1 -->
@@ -165,8 +173,8 @@
         <p><strong>E-post:</strong> <a href="mailto:dittnavn@gmail.com">dittnavn@gmail.com</a></p>
         <p><strong>Telefon:</strong> <a href="tel:+4799999999">+47 999 99 999</a></p>
         <p><strong>Sosiale medier:</strong><br>
-          <a href="https://instagram.com/dittinstagram" target="_blank" rel="noopener">Instagram</a> • 
-          <a href="https://facebook.com/dittfacebook" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://instagram.com/positiv_aktivitet" target="_blank" rel="noopener">Instagram</a> • 
+          <a href="https://facebook.com/positiv_aktivitet" target="_blank" rel="noopener">Facebook</a>
         </p>
       </div>
     </div>
@@ -176,7 +184,7 @@
 
 <footer>
   <div class="container">
-    © 2025 Ditt Navn – Personlig Trener &amp; Online Coach
+    © 2025 Linn Røymstad  – Personlig Trener, Online Coach &amp; Bedriftstrening
   </div>
 </footer>
 
@@ -196,40 +204,57 @@
   });
 </script>
 
+
+<!-- Carousel script -->
 <script>
   const track = document.querySelector('.testimonial-track');
-  const cards = document.querySelectorAll('.testimonial-card');
+  const cards = Array.from(document.querySelectorAll('.testimonial-card'));
   const prevBtn = document.querySelector('.carousel-btn.prev');
   const nextBtn = document.querySelector('.carousel-btn.next');
-  
+
+  // Duplicate cards for seamless infinite loop
+  cards.forEach(card => track.appendChild(card.cloneNode(true)));
+
   let index = 0;
-  const cardWidth = cards[0].offsetWidth + 32; // card + gap
+  const totalCards = cards.length;
+  const cardWidth = cards[0].offsetWidth + 32;
 
   function updateCarousel() {
     track.style.transform = `translateX(${-index * cardWidth}px)`;
   }
 
   nextBtn.addEventListener('click', () => {
-    if (index < cards.length - 1) {
-      index++;
-    } else {
-      index = 0; // loop back
-    }
+    index++;
     updateCarousel();
+    if (index >= totalCards) {
+      setTimeout(() => {
+        track.style.transition = 'none';
+        index = 0;
+        track.style.transform = 'translateX(0)';
+        requestAnimationFrame(() => track.style.transition = 'transform 0.5s ease');
+      }, 500);
+    }
   });
 
   prevBtn.addEventListener('click', () => {
-    if (index > 0) {
-      index--;
+    if (index <= 0) {
+      index = totalCards;
+      track.style.transition = 'none';
+      track.style.transform = `translateX(${-index * cardWidth}px)`;
+      requestAnimationFrame(() => {
+        track.style.transition = 'transform 0.5s ease';
+        index--;
+        updateCarousel();
+      });
     } else {
-      index = cards.length - 1;
+      index--;
+      updateCarousel();
     }
-    updateCarousel();
   });
 
-  // Touch/swipe support for mobile & trackpad
+  // Touch swipe (mobile + trackpad)
   let startX = 0;
-  track.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+  track.addEventListener('touchstart', e => startX = e.touches[0].clientX, {passive:true});
   track.addEventListener('touchend', e => {
     const endX = e.changedTouches[0].clientX;
     if (startX - endX > 50) nextBtn.click();
