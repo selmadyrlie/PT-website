@@ -976,3 +976,281 @@ footer p {
     font-size: 0.75rem;
   }
 }
+
+/* ==== MEDIA QUERIES ==== */
+
+/* Tablets og mindre laptops (under 1024px) */
+@media (max-width: 1024px) {
+  /* Hero - stable bilde og tekst vertikalt */
+  .hero-fullscreen {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: auto;
+  }
+
+  .hero-image-wrapper {
+    grid-column: 1;
+    height: 50vh;
+    min-height: 400px;
+    order: 1; /* Bilde først */
+  }
+
+  .hero-content {
+    order: 2; /* Tekst under */
+    padding: 3rem 2rem;
+    margin-left: 0;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  /* Intro section - stable til 1 kolonne */
+  .intro-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .arch-frame {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  /* About section - stable til 1 kolonne */
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .about-stats {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* Services - 2 kolonner på tablets */
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Pricing - 2 kolonner på tablets */
+  .pricing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Contact - stable til 1 kolonne */
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* Testimonials - mindre kort */
+  .testimonial-card {
+    min-width: 380px;
+    max-width: 380px;
+  }
+}
+
+/* Mobil (under 768px) */
+@media (max-width: 768px) {
+  /* Navigation - stable vertikalt */
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  nav {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  nav a {
+    font-size: 0.9rem;
+  }
+
+  /* Hero - mindre tekst */
+  .hero-fullscreen {
+    min-height: auto;
+  }
+
+  .hero-image-wrapper {
+    height: 40vh;
+    min-height: 300px;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  /* Keywords banner - mindre tekst */
+  .keywords-banner {
+    padding: 1rem 0;
+  }
+
+  .keywords-track span {
+    font-size: 0.8rem;
+    gap: 2rem;
+  }
+
+  /* Sections - mindre padding */
+  section,
+  .intro-section,
+  .about-section,
+  .services-section,
+  .pricing-section,
+  .testimonials-section,
+  .contact-section {
+    padding: 4rem 0;
+  }
+
+  /* Container - mindre side-padding */
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  /* Section headers - mindre tekst */
+  .section-header h2 {
+    font-size: 2rem;
+  }
+
+  /* Services - 1 kolonne */
+  .services-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* Pricing - 1 kolonne */
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* Testimonials - mindre kort */
+  .testimonial-card {
+    min-width: 320px;
+    max-width: 320px;
+    padding: 2rem;
+  }
+
+  .testimonial-track {
+    padding: 0 3rem;
+  }
+
+  /* Contact form - mindre padding */
+  .contact-form-wrapper,
+  .contact-info-card {
+    padding: 2rem;
+  }
+
+  /* Buttons - full bredde på mobil */
+  .btn-primary,
+  .btn-outline {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Arch frame - mindre */
+  .arch-frame {
+    max-width: 100%;
+  }
+
+  /* About stats - mindre */
+  .stat-number {
+    font-size: 2rem;
+  }
+}
+
+/* Små mobiler (under 480px) */
+@media (max-width: 480px) {
+  /* Container - enda mindre padding */
+  .container {
+    padding: 0 1rem;
+  }
+
+  /* Hero */
+  .hero-content {
+    padding: 2rem 1rem;
+  }
+
+  .hero-content h1 {
+    font-size: 1.75rem;
+  }
+
+  /* Keywords banner - skjul på veldig små skjermer (valgfritt) */
+  .keywords-track span {
+    font-size: 0.75rem;
+  }
+
+  /* Section headers */
+  .section-header h2 {
+    font-size: 1.75rem;
+  }
+
+  /* Cards - mindre padding */
+  .service-card,
+  .pricing-card {
+    padding: 2rem 1.5rem;
+  }
+
+  /* Testimonials - mindre kort */
+  .testimonial-card {
+    min-width: 280px;
+    max-width: 280px;
+    padding: 1.5rem;
+  }
+
+  .testimonial-track {
+    padding: 0 2.5rem;
+  }
+
+  /* Contact */
+  .contact-form-wrapper,
+  .contact-info-card {
+    padding: 1.5rem;
+  }
+
+  /* Social links - stable vertikalt */
+  .social-links {
+    flex-direction: column;
+  }
+
+  /* Navigation - mindre gap */
+  nav {
+    gap: 0.75rem;
+  }
+
+  nav a {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Universal tekst-padding */
+  p, h1, h2, h3, h4, ul, ol {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Unntatt elementer som allerede har padding fra containere */
+  .service-card p,
+  .pricing-card p,
+  .testimonial-card p,
+  .contact-form-wrapper p,
+  .contact-info-card p {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  p, h1, h2, h3, h4, ul, ol {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
