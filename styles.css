@@ -1,3 +1,4 @@
+
 /* ==== THEME VARIABLES ==== */
 :root {
   --bg: #a3bca1;
@@ -22,9 +23,6 @@
   --border-soft: #2a2a2a;
   --overlay: rgba(0, 0, 0, 0.6);
 }
-
-
-
 
 /* ==== BASE STYLES ==== */
 * {
@@ -82,11 +80,8 @@ a {
 }
 
 a:hover {
-  color: var(--accent-light);
+  color: var(--accent-hover);
 }
-
-
-
 
 /* ==== LAYOUT ==== */
 .container {
@@ -105,9 +100,6 @@ section {
   width: 100%;
   overflow-x: hidden;
 }
-
-
-
 
 /* ==== HEADER & NAVIGATION ==== */
 header {
@@ -199,9 +191,6 @@ nav a:hover::after {
   width: 100%;
 }
 
-
-
-
 /* ==== THEME TOGGLE ==== */
 #theme-toggle {
   background: none;
@@ -231,9 +220,6 @@ nav a:hover::after {
 .dark .sun-icon {
   opacity: 0;
 }
-
-
-
 
 /* ==== HERO FULLSCREEN ==== */
 .hero-fullscreen {
@@ -300,9 +286,6 @@ nav a:hover::after {
   font-family: system-ui, sans-serif;
 }
 
-
-
-
 /* ==== SCROLLING KEYWORDS BANNER ==== */
 .keywords-banner {
   position: absolute;
@@ -347,9 +330,6 @@ nav a:hover::after {
   }
 }
 
-
-
-
 /* ==== BUTTONS ==== */
 .btn-primary {
   display: inline-flex;
@@ -369,11 +349,9 @@ nav a:hover::after {
 }
 
 .btn-primary:hover {
-  background: var(--accent-hover);
+  background: var(--bg);
   transform: translateY(-2px);
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  
-
 }
 
 .btn-outline {
@@ -404,9 +382,6 @@ nav a:hover::after {
   justify-content: center;
 }
 
-
-
-
 /* ==== SECTION HEADERS ==== */
 .section-header {
   text-align: center;
@@ -430,9 +405,6 @@ nav a:hover::after {
   color: var(--text-soft);
   margin-top: 1rem;
 }
-
-
-
 
 /* ==== INTRO SECTION ==== */
 .intro-section {
@@ -472,13 +444,9 @@ nav a:hover::after {
   object-fit: cover;
 }
 
-
-
-
-
 /* ==== ABOUT SECTION ==== */
 .about-section {
-  padding: 8rem 0;
+  padding: 6rem 0;
   background: var(--accent-light);
   position: relative;
   width: 100vw;
@@ -546,7 +514,7 @@ nav a:hover::after {
 
 /* ==== SERVICES ==== */
 .services-section {
-  padding: 8rem 0;
+  padding: 6rem 0;
 }
 
 .services-grid {
@@ -574,6 +542,7 @@ nav a:hover::after {
   transition: box-shadow 0.3s;
   position: relative;
   height: 100%;
+  width: 100%;
 }
 
 .service-card-link:hover .service-card {
@@ -604,13 +573,10 @@ nav a:hover::after {
   padding-left: 0;
 }
 
-
-
-
 /* ==== PRICING ==== */
 .pricing-section {
-  padding: 8rem 0;
-  background: var(--card);
+  padding: 6rem 0;
+  background: var(--accent-light);
   position: relative;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
@@ -630,8 +596,7 @@ nav a:hover::after {
   background: var(--card);
   padding: 3rem 2.5rem;
   border-radius: 20px;
-  border: 2px solid var(--accent);
-  box-shadow: 0 10px 40px rgba(44, 95, 79, 0.15);
+  border: 1px solid var(--border-soft);
   text-align: center;
   transition: all 0.3s;
   position: relative;
@@ -644,6 +609,10 @@ nav a:hover::after {
   box-shadow: 0 20px 50px rgba(0,0,0,0.12);
 }
 
+.pricing-card.highlighted {
+  border: 2px solid var(--accent);
+  box-shadow: 0 10px 40px rgba(44, 95, 79, 0.15);
+}
 
 .pricing-card h3 {
   font-size: 1.5rem;
@@ -681,19 +650,28 @@ nav a:hover::after {
   margin-top: auto;
 }
 
+.pricing-card .btn-primary:hover {
+  color: white;
+}
 
-
+.pricing-card .btn-outline:hover {
+  color: white;
+}
 
 /* ==== TESTIMONIALS ==== */
 .testimonials-section {
-  padding: 2rem 0;
+  padding: 5rem 0 2rem 0;
 }
 
+.testimonials-section .section-header {
+  margin-bottom: 3rem;
+  padding-top: 2rem;
+}
 
 .carousel-container {
   position: relative;
   overflow: hidden;
-  margin: 0 0rem;
+  margin: 0;
   padding: 2rem 0;
   padding-left: 1rem;
   padding-right: 2rem;
@@ -800,12 +778,9 @@ nav a:hover::after {
   right: 12px;
 }
 
-
-
-
 /* ==== CONTACT ==== */
 .contact-section {
-  padding: 8rem 0;
+  padding: 6rem 0;
 }
 
 .contact-grid {
@@ -813,6 +788,20 @@ nav a:hover::after {
   grid-template-columns: 1.2fr 1fr;
   gap: 4rem;
   margin-top: 3rem;
+}
+
+.error-message {
+  display: block;
+  color: #d32f2f;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  font-family: system-ui, sans-serif;
+  min-height: 1.2rem;
+}
+
+input:valid:not(:placeholder-shown),
+textarea:valid:not(:placeholder-shown) {
+  border-color: var(--accent);
 }
 
 .contact-form-wrapper {
@@ -929,9 +918,6 @@ textarea {
   transform: translateY(-2px);
 }
 
-
-
-
 /* ==== FOOTER ==== */
 footer {
   padding: 3rem 0;
@@ -946,9 +932,6 @@ footer p {
   font-size: 0.9rem;
 }
 
-
-
-
 /* ==== MEDIA QUERIES ==== */
 @media (max-width: 1024px) {
   .intro-grid,
@@ -962,8 +945,10 @@ footer p {
     margin: 0 auto;
   }
 
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
+   .services-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
   }
 
   .pricing-grid {
@@ -973,8 +958,8 @@ footer p {
   }
 
   .testimonial-card {
-    min-width: 380px;
-    max-width: 380px;
+    width: 450px;
+    height: 360px;
   }
 }
 
@@ -1022,20 +1007,25 @@ footer p {
   }
 
   .testimonial-card {
-    min-width: 320px;
-    max-width: 320px;
-    padding: 2rem;
+    width: 380px;
+    height: 340px;
+    padding: 1.75rem;
   }
 
   .testimonial-track {
-    padding: 0 3rem;
+    padding: 0 1.5rem;
+  }
+
+  .carousel-container {
+    padding-left: 0.5rem;
+    padding-right: 1rem;
   }
 
   section {
     padding: 4rem 0;
   }
 
-  .services-grid {
+  .services-section {
     grid-template-columns: 1fr;
     max-width: 500px;
     margin: 0 auto;
@@ -1045,9 +1035,12 @@ footer p {
   .about-section,
   .services-section,
   .pricing-section,
-  .testimonials-section,
   .contact-section {
     padding: 4rem 0;
+  }
+
+  .testimonials-section {
+    padding: 4rem 0 2rem 0;
   }
 
   /* Universal tekst-padding */
@@ -1085,13 +1078,23 @@ footer p {
   }
 
   .testimonial-card {
-    min-width: 280px;
-    max-width: 280px;
+    width: 300px;
+    height: 320px;
     padding: 1.5rem;
   }
 
+  .review-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
   .testimonial-track {
-    padding: 0 2.5rem;
+    padding: 0 1rem;
+  }
+
+  .carousel-container {
+    padding-left: 0.25rem;
+    padding-right: 0.5rem;
   }
 
   p, h1, h2, h3, h4, ul, ol {

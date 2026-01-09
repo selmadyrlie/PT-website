@@ -1,4 +1,5 @@
 
+INFO:
 
 legge til:
 - jobber på Evo, ta kontakt via dem
@@ -7,4 +8,26 @@ legge til:
 
 spørsmål:
 - hva skal være tjenester
-- hva skal være pakker
+- hva skal være pakker og priser
+
+
+
+
+NETLIFY:
+Til Linn:
+- Gå til Netlify dashboard → Site settings → Forms → Form notifications
+- Legg til e-postadresse linn.roymstad@outlook.com
+- Netlify sender automatisk alle skjema-innsendinger til denne e-posten
+
+
+
+FUNKSJONER:
+
+legge til: 
+- pop up ved insendt kontaktskjema, "takk for at du tok kontakt, jeg svarer så fort jeg kan" etc.
+ -browser ikon
+
+fikse:
+- karusell for anmeldelser
+- karusell på hero banner
+

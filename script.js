@@ -152,3 +152,42 @@ track.addEventListener('dragstart', (e) => e.preventDefault());
 window.addEventListener('resize', () => {
   setPositionByIndex();
 });
+
+
+
+
+
+// Form validation
+const form = document.querySelector('form[name="contact"]');
+const navnInput = document.getElementById('navn');
+const epostInput = document.getElementById('epost');
+
+if (form) {
+  form.addEventListener('submit', (e) => {
+    let isValid = true;
+
+    // Validate email
+    const epostPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!epostPattern.test(epostInput.value.trim())) {
+      isValid = false;
+      document.getElementById('epost-error').textContent = 'Skriv inn en gyldig e-postadresse';
+    } else {
+      document.getElementById('epost-error').textContent = '';
+    }
+
+    if (!isValid) {
+      e.preventDefault();
+    }
+  });
+
+  
+
+  // Real-time validation feedback
+  navnInput.addEventListener('input', () => {
+    document.getElementById('navn-error').textContent = '';
+  });
+
+  epostInput.addEventListener('input', () => {
+    document.getElementById('epost-error').textContent = '';
+  });
+}

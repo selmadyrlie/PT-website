@@ -231,7 +231,7 @@
 
         <a href="#kontakt" class="service-card-link">
           <div class="service-card">
-            <h3>Online gruppetime</h3>
+            <h3>Online gruppetimer</h3>
             <p>Korte økter – tren når og hvor du vil – lite utstyr nødvendig.</p>
             <ul class="service-features">
               <li>✓ Korte økter</li>
@@ -306,26 +306,48 @@
       <div class="contact-grid">
         <div class="contact-form-wrapper">
           <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-            <input type="hidden" name="form-name" value="contact" />
-            <p hidden><input name="bot-field" /></p>
-            
-            <div class="form-group">
-              <label for="navn">Ditt navn</label>
-              <input type="text" id="navn" name="navn" required />
-            </div>
-            
-            <div class="form-group">
-              <label for="epost">Din e-post</label>
-              <input type="email" id="epost" name="epost" required />
-            </div>
-            
-            <div class="form-group">
-              <label for="melding">Din melding</label>
-              <textarea id="melding" name="melding" rows="5" placeholder="Fortell litt om deg selv og hva du ønsker hjelp med..." required></textarea>
-            </div>
-            
-            <button type="submit" class="btn-primary btn-full">Send melding →</button>
-          </form>
+  <input type="hidden" name="form-name" value="contact" />
+  <p hidden><input name="bot-field" /></p>
+  
+  <div class="form-group">
+    <label for="navn">Ditt navn</label>
+    <input 
+      type="text" 
+      id="navn" 
+      name="navn" 
+      pattern="^[A-Za-zÆØÅæøå\s]{2,}(\s[A-Za-zÆØÅæøå\s]{2,})?$"
+      title="Skriv minst fornavn (2+ bokstaver)"
+      required 
+    />
+    <span class="error-message" id="navn-error"></span>
+  </div>
+  
+  <div class="form-group">
+    <label for="epost">Din e-post</label>
+    <input 
+      type="email" 
+      id="epost" 
+      name="epost" 
+      pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+      title="Skriv en gyldig e-postadresse"
+      required 
+    />
+    <span class="error-message" id="epost-error"></span>
+  </div>
+  
+  <div class="form-group">
+    <label for="melding">Din melding</label>
+    <textarea 
+      id="melding" 
+      name="melding" 
+      rows="5" 
+      placeholder="Fortell litt om deg selv og hva du ønsker hjelp med..." 
+      required
+    ></textarea>
+  </div>
+  
+  <button type="submit" class="btn-primary btn-full">Send melding →</button>
+</form>
         </div>
 
         <div class="contact-info-wrapper">
