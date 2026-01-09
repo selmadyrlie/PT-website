@@ -157,7 +157,7 @@ window.addEventListener('resize', () => {
 
 
 
-// Form validation
+// Form validation and success popup
 const form = document.querySelector('form[name="contact"]');
 const navnInput = document.getElementById('navn');
 const epostInput = document.getElementById('epost');
@@ -166,21 +166,47 @@ if (form) {
   form.addEventListener('submit', (e) => {
     let isValid = true;
 
+    // Validate navn (fornavn eller fornavn + etternavn)
+    const navnPattern = /^[A-Za-zÆØÅæøå\s]{2,}(\s[A-Za-zÆØÅæøå\s]{2,})?$/;
+    if (!navnPattern.test(navnInput.value.trim())) {
+      isValid = false;
+      document.getElementById('navn-error').textContent = 'Skriv minst fornavn (2+ bokstaver)';
+    } else {
+      document.getElementById('navn-error').textContent = '';
+    }
+
     // Validate email
     const epostPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!epostPattern.test(epostInput.value.trim())) {
       isValid = false;
-      document.getElementById('epost-error').textContent = 'Skriv inn en gyldig e-postadresse';
+      document.getElementById('epost-error').textContent = 'Skriv en gyldig e-postadresse';
     } else {
       document.getElementById('epost-error').textContent = '';
     }
 
     if (!isValid) {
       e.preventDefault();
+    } else {
+      // Show success popup after form submission
+      e.preventDefault();
+      
+      // Submit form data
+      const formData = new FormData(form);
+      
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      })
+      .then(() => {
+        showSuccessPopup();
+        form.reset();
+      })
+      .catch((error) => {
+        alert('Noe gikk galt. Prøv igjen.');
+      });
     }
   });
-
-  
 
   // Real-time validation feedback
   navnInput.addEventListener('input', () => {
@@ -190,4 +216,32 @@ if (form) {
   epostInput.addEventListener('input', () => {
     document.getElementById('epost-error').textContent = '';
   });
+}
+
+// Success popup
+function showSuccessPopup() {
+  const popup = document.createElement('div');
+  popup.className = 'success-popup';
+  popup.innerHTML = `
+    <div class="success-popup-content">
+      <div class="success-icon">✓</div>
+      <h3>Takk for at du tok kontakt!</h3>
+      <p>Jeg svarer deg så snart som mulig.</p>
+      <button class="btn-primary" onclick="closeSuccessPopup()">Lukk</button>
+    </div>
+  `;
+  document.body.appendChild(popup);
+  
+  // Fade in
+  setTimeout(() => {
+    popup.classList.add('show');
+  }, 10);
+}
+
+function closeSuccessPopup() {
+  const popup = document.querySelector('.success-popup');
+  popup.classList.remove('show');
+  setTimeout(() => {
+    popup.remove();
+  }, 300);
 }
