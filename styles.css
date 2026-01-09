@@ -32,6 +32,8 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -40,6 +42,9 @@ body {
   color: var(--text-main);
   line-height: 1.7;
   transition: background 0.3s, color 0.3s;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
 h1, h2, h3, h4 {
@@ -82,6 +87,17 @@ a:hover {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+  width: 100%;
+}
+
+main {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+section {
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* ==== HEADER & NAVIGATION ==== */
@@ -93,6 +109,7 @@ header {
   -webkit-backdrop-filter: blur(20px);
   background: rgba(250, 249, 246, 0.9);
   border-bottom: 1px solid var(--border-soft);
+  width: 100%;
 }
 
 .dark header {
@@ -211,12 +228,15 @@ nav a:hover::after {
   display: flex;
   align-items: center;
   overflow: hidden;
+  width: 100%;
 }
 
 .hero-image-wrapper {
   position: absolute;
   inset: 0;
   z-index: 0;
+  width: 100%;
+  overflow: hidden;
 }
 
 .hero-image-wrapper img {
@@ -236,6 +256,7 @@ nav a:hover::after {
   position: relative;
   z-index: 2;
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 2rem;
   color: white;
@@ -270,6 +291,7 @@ nav a:hover::after {
   bottom: 0;
   left: 0;
   right: 0;
+  width: 100%;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   padding: 1.5rem 0;
@@ -286,6 +308,7 @@ nav a:hover::after {
   gap: 3rem;
   animation: scroll 30s linear infinite;
   white-space: nowrap;
+  width: max-content;
 }
 
 .keywords-track span {
@@ -424,9 +447,10 @@ nav a:hover::after {
 .about-section {
   padding: 8rem 0;
   background: var(--accent-light);
-  margin: 0 -100vw;
-  padding-left: calc(100vw - 50%);
-  padding-right: calc(100vw - 50%);
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  overflow: hidden;
 }
 
 .about-content {
@@ -494,7 +518,7 @@ nav a:hover::after {
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 2.5rem;
 }
 
@@ -550,10 +574,11 @@ nav a:hover::after {
 /* ==== PRICING ==== */
 .pricing-section {
   padding: 8rem 0;
-  background: var(--accent-light);
-  margin: 0 -100vw;
-  padding-left: calc(100vw - 50%);
-  padding-right: calc(100vw - 50%);
+  background: var(--card);
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  overflow: hidden;
 }
 
 .pricing-grid {
@@ -632,6 +657,7 @@ nav a:hover::after {
   position: relative;
   overflow: hidden;
   padding: 3rem 0;
+  width: 100%;
 }
 
 .testimonial-track {
@@ -642,6 +668,7 @@ nav a:hover::after {
   touch-action: pan-x;
   user-select: none;
   cursor: grab;
+  width: max-content;
 }
 
 .testimonial-track:active {
@@ -657,6 +684,8 @@ nav a:hover::after {
   border: 1px solid var(--border-soft);
   box-shadow: 0 10px 40px rgba(0,0,0,0.08);
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .stars {
@@ -669,21 +698,19 @@ nav a:hover::after {
   font-size: 1.05rem;
   line-height: 1.7;
   color: var(--text-soft);
-  margin-bottom: 2rem;
+  margin-bottom: auto;
+  padding-bottom: 2rem;
   font-style: italic;
+  flex-grow: 1;
 }
 
 .reviewer {
   display: flex;
   align-items: center;
   gap: 1rem;
-}
-
-.reviewer img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-soft);
 }
 
 .reviewer strong {
@@ -865,6 +892,7 @@ footer {
   text-align: center;
   border-top: 1px solid var(--border-soft);
   font-family: system-ui, sans-serif;
+  width: 100%;
 }
 
 footer p {
@@ -885,7 +913,10 @@ footer p {
     margin: 0 auto;
   }
 
-  .services-grid,
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .pricing-grid {
     grid-template-columns: 1fr;
     max-width: 500px;
@@ -899,6 +930,10 @@ footer p {
 }
 
 @media (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+
   .nav {
     flex-direction: column;
     align-items: flex-start;
@@ -951,153 +986,12 @@ footer p {
     padding: 4rem 0;
   }
 
-  .intro-section,
-  .about-section,
-  .services-section,
-  .pricing-section,
-  .testimonials-section,
-  .contact-section {
-    padding: 4rem 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 0 1rem;
-  }
-
-  .btn-primary,
-  .btn-outline {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .keywords-track span {
-    font-size: 0.75rem;
-  }
-}
-
-/* ==== MEDIA QUERIES ==== */
-
-/* Tablets og mindre laptops (under 1024px) */
-@media (max-width: 1024px) {
-  /* Hero - stable bilde og tekst vertikalt */
-  .hero-fullscreen {
+  .services-grid {
     grid-template-columns: 1fr;
-    height: auto;
-    min-height: auto;
-  }
-
-  .hero-image-wrapper {
-    grid-column: 1;
-    height: 50vh;
-    min-height: 400px;
-    order: 1; /* Bilde først */
-  }
-
-  .hero-content {
-    order: 2; /* Tekst under */
-    padding: 3rem 2rem;
-    margin-left: 0;
-    text-align: center;
-    max-width: 100%;
-  }
-
-  /* Intro section - stable til 1 kolonne */
-  .intro-grid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-
-  .arch-frame {
-    max-width: 400px;
-    margin: 0 auto;
-  }
-
-  /* About section - stable til 1 kolonne */
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-
-  .about-stats {
     max-width: 500px;
     margin: 0 auto;
   }
 
-  /* Services - 2 kolonner på tablets */
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  /* Pricing - 2 kolonner på tablets */
-  .pricing-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  /* Contact - stable til 1 kolonne */
-  .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  /* Testimonials - mindre kort */
-  .testimonial-card {
-    min-width: 380px;
-    max-width: 380px;
-  }
-}
-
-/* Mobil (under 768px) */
-@media (max-width: 768px) {
-  /* Navigation - stable vertikalt */
-  .nav {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  nav {
-    width: 100%;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  nav a {
-    font-size: 0.9rem;
-  }
-
-  /* Hero - mindre tekst */
-  .hero-fullscreen {
-    min-height: auto;
-  }
-
-  .hero-image-wrapper {
-    height: 40vh;
-    min-height: 300px;
-  }
-
-  .hero-content h1 {
-    font-size: 2rem;
-  }
-
-  .hero-content p {
-    font-size: 1rem;
-  }
-
-  /* Keywords banner - mindre tekst */
-  .keywords-banner {
-    padding: 1rem 0;
-  }
-
-  .keywords-track span {
-    font-size: 0.8rem;
-    gap: 2rem;
-  }
-
-  /* Sections - mindre padding */
-  section,
   .intro-section,
   .about-section,
   .services-section,
@@ -1107,130 +1001,6 @@ footer p {
     padding: 4rem 0;
   }
 
-  /* Container - mindre side-padding */
-  .container {
-    padding: 0 1.5rem;
-  }
-
-  /* Section headers - mindre tekst */
-  .section-header h2 {
-    font-size: 2rem;
-  }
-
-  /* Services - 1 kolonne */
-  .services-grid {
-    grid-template-columns: 1fr;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
-  /* Pricing - 1 kolonne */
-  .pricing-grid {
-    grid-template-columns: 1fr;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
-  /* Testimonials - mindre kort */
-  .testimonial-card {
-    min-width: 320px;
-    max-width: 320px;
-    padding: 2rem;
-  }
-
-  .testimonial-track {
-    padding: 0 3rem;
-  }
-
-  /* Contact form - mindre padding */
-  .contact-form-wrapper,
-  .contact-info-card {
-    padding: 2rem;
-  }
-
-  /* Buttons - full bredde på mobil */
-  .btn-primary,
-  .btn-outline {
-    width: 100%;
-    justify-content: center;
-  }
-
-  /* Arch frame - mindre */
-  .arch-frame {
-    max-width: 100%;
-  }
-
-  /* About stats - mindre */
-  .stat-number {
-    font-size: 2rem;
-  }
-}
-
-/* Små mobiler (under 480px) */
-@media (max-width: 480px) {
-  /* Container - enda mindre padding */
-  .container {
-    padding: 0 1rem;
-  }
-
-  /* Hero */
-  .hero-content {
-    padding: 2rem 1rem;
-  }
-
-  .hero-content h1 {
-    font-size: 1.75rem;
-  }
-
-  /* Keywords banner - skjul på veldig små skjermer (valgfritt) */
-  .keywords-track span {
-    font-size: 0.75rem;
-  }
-
-  /* Section headers */
-  .section-header h2 {
-    font-size: 1.75rem;
-  }
-
-  /* Cards - mindre padding */
-  .service-card,
-  .pricing-card {
-    padding: 2rem 1.5rem;
-  }
-
-  /* Testimonials - mindre kort */
-  .testimonial-card {
-    min-width: 280px;
-    max-width: 280px;
-    padding: 1.5rem;
-  }
-
-  .testimonial-track {
-    padding: 0 2.5rem;
-  }
-
-  /* Contact */
-  .contact-form-wrapper,
-  .contact-info-card {
-    padding: 1.5rem;
-  }
-
-  /* Social links - stable vertikalt */
-  .social-links {
-    flex-direction: column;
-  }
-
-  /* Navigation - mindre gap */
-  nav {
-    gap: 0.75rem;
-  }
-
-  nav a {
-    font-size: 0.85rem;
-  }
-}
-
-@media (max-width: 768px) {
   /* Universal tekst-padding */
   p, h1, h2, h3, h4, ul, ol {
     padding-left: 1rem;
@@ -1242,15 +1012,52 @@ footer p {
   .pricing-card p,
   .testimonial-card p,
   .contact-form-wrapper p,
-  .contact-info-card p {
+  .contact-info-card p,
+  .hero-content p,
+  .hero-content h1 {
     padding-left: 0;
     padding-right: 0;
   }
 }
 
 @media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .keywords-track span {
+    font-size: 0.75rem;
+  }
+
+  .testimonial-card {
+    min-width: 280px;
+    max-width: 280px;
+    padding: 1.5rem;
+  }
+
+  .testimonial-track {
+    padding: 0 2.5rem;
+  }
+
   p, h1, h2, h3, h4, ul, ol {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+  }
+
+  .service-card p,
+  .pricing-card p,
+  .testimonial-card p,
+  .contact-form-wrapper p,
+  .contact-info-card p,
+  .hero-content p,
+  .hero-content h1 {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
