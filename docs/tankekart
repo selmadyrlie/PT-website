@@ -12,20 +12,38 @@ spørsmål:
 
 
 
-
+TIL LINN:
 NETLIFY:
-Til Linn:
-- Gå til Netlify dashboard → Site settings → Forms → Form notifications
-- Legg til e-postadresse linn.roymstad@outlook.com
-- Netlify sender automatisk alle skjema-innsendinger til denne e-posten
+
+Fordeler:
+- Gratis SSL-sertifikat (https)
+- Automatic deployment fra GitHub
+- Kontaktskjema fungerer automatisk
+- Enkel å oppdatere
+
+Slik gjør du:
+- Gå til netlify.com og registrer deg
+- Dra og slipp alle filene dine (index.html, styles.css, script.js, assets-mappen)
+- Nettsiden er live på random-name.netlify.app
+- Koble til eget domene hvis du vil (f.eks. linnroymstad.no)
+
+For kontaktskjema:
+- Gå til Site settings → Forms → Notifications
+- Legg til e-post linn.roymstad@outlook.com
+
+
+
+
+
 
 
 
 FUNKSJONER:
 
 legge til: 
-- pop up ved insendt kontaktskjema, "takk for at du tok kontakt, jeg svarer så fort jeg kan" etc.
- -browser ikon
+- pop up ved insendt kontaktskjema, "takk for at du tok kontakt, jeg svarer så fort jeg kan" etc. 
+- browser ikon
+- nettsikkerhet
 
 fikse:
 - karusell for anmeldelser

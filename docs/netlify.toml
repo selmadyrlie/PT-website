@@ -1,0 +1,48 @@
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Prevent clickjacking
+    X-Frame-Options = "DENY"
+    
+    # Prevent MIME type sniffing
+    X-Content-Type-Options = "nosniff"
+    
+    # Enable XSS protection
+    X-XSS-Protection = "1; mode=block"
+    
+    # Referrer policy
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # Content Security Policy
+    Content-Security-Policy = """
+      default-src 'self';
+      script-src 'self' 'unsafe-inline';
+      style-src 'self' 'unsafe-inline';
+      img-src 'self' data: https:;
+      font-src 'self';
+      connect-src 'self';
+      frame-ancestors 'none';
+      base-uri 'self';
+      form-action 'self';
+    """
+    
+    # Permissions policy
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Form spam protection
+[[plugins]]
+  package = "@netlify/plugin-form-submissions"
+
+# Rate limiting for form submissions
+[[redirects]]
+  from = "/*"
+  to = "/429.html"
+  status = 429
+  force = false
+  conditions = {Rate-Limit = "100"}
+
+  [[redirects]]
+  from = "http://linnroymstad.no/*"
+  to = "https://linnroymstad.no/:splat"
+  status = 301
+  force = true

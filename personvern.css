@@ -1,0 +1,160 @@
+/* ==== IMPORT MAIN THEME ==== */
+@import url('styles.css');
+
+/* ==== PERSONVERN PAGE SPECIFIC STYLES ==== */
+
+.personvern-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+}
+
+.personvern-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid var(--border-soft);
+}
+
+.personvern-header h1 {
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.personvern-header .last-updated {
+  font-family: system-ui, sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-soft);
+}
+
+.personvern-content {
+  line-height: 1.8;
+}
+
+.personvern-content h2 {
+  color: var(--accent);
+  font-size: 1.75rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.personvern-content h3 {
+  color: var(--text-main);
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.personvern-content p {
+  color: var(--text-soft);
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+}
+
+.personvern-content ul {
+  margin: 1.5rem 0;
+  padding-left: 2rem;
+}
+
+.personvern-content li {
+  color: var(--text-soft);
+  margin-bottom: 0.75rem;
+  font-size: 1.05rem;
+  font-family: system-ui, sans-serif;
+}
+
+.personvern-content strong {
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.contact-box {
+  background: var(--accent-light);
+  padding: 2rem;
+  border-radius: 15px;
+  margin: 3rem 0;
+}
+
+.contact-box h3 {
+  margin-top: 0;
+  color: var(--accent);
+}
+
+.contact-box p {
+  margin-bottom: 0.5rem;
+}
+
+.contact-box a {
+  color: var(--accent);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.contact-box a:hover {
+  border-bottom-color: var(--accent);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 3rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-family: system-ui, sans-serif;
+  font-weight: 500;
+  transition: gap 0.2s;
+}
+
+.back-link:hover {
+  gap: 0.75rem;
+}
+
+.back-link::before {
+  content: "←";
+  font-size: 1.2rem;
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 768px) {
+  .personvern-container {
+    padding: 4rem 1.5rem;
+  }
+
+  .personvern-header h1 {
+    font-size: 2rem;
+  }
+
+  .personvern-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .personvern-content h3 {
+    font-size: 1.15rem;
+  }
+
+  .personvern-content p,
+  .personvern-content li {
+    font-size: 1rem;
+  }
+
+  .contact-box {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .personvern-container {
+    padding: 3rem 1rem;
+  }
+
+  .personvern-header {
+    margin-bottom: 3rem;
+  }
+
+  .personvern-content ul {
+    padding-left: 1.5rem;
+  }
+}
