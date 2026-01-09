@@ -3,12 +3,17 @@ INFO:
 
 legge til:
 - jobber på Evo, ta kontakt via dem
-- 
+- forskningartikler du har skrevet 
+- videoer av trening / kunder du har hatt
+- flere bilder
+- bider fra kunder (feks før og etter trening med deg)
 
 
 spørsmål:
 - hva skal være tjenester
 - hva skal være pakker og priser
+
+
 
 
 
@@ -48,4 +53,8 @@ legge til:
 fikse:
 - karusell for anmeldelser
 - karusell på hero banner
-
+- Komprimer alle bilder (bruk TinyPNG eller Squoosh) for å optimalisere hastighet
+- accessibility
+ - legge til alt-tekst på bilder
+ - sikre at alle interaktive elementer er tilgjengelige med tastatur
+ - bruke semantisk HTML for bedre skjermleserstøtte
