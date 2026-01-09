@@ -28,37 +28,54 @@ const cardWidth = cards[0].offsetWidth;
 const gap = 40; // 2.5rem = 40px
 const totalCards = cards.length;
 
+// Set carousel position based on current index
 function setPositionByIndex() {
+  // Jump to start when reaching the end
+  if (currentIndex >= totalCards) {
+    track.style.transition = 'none';
+    currentIndex = 0;
+    currentTranslate = 0;
+    track.style.transform = `translateX(0px)`;
+    
+    // Re-enable transition after one frame
+    setTimeout(() => {
+      track.style.transition = 'transform 0.5s ease';
+    }, 50);
+    return;
+  }
+  
+  // Jump to end when going back from start
+  if (currentIndex < 0) {
+    track.style.transition = 'none';
+    currentIndex = totalCards - 1;
+    currentTranslate = currentIndex * -(cardWidth + gap);
+    track.style.transform = `translateX(${currentTranslate}px)`;
+    
+    setTimeout(() => {
+      track.style.transition = 'transform 0.5s ease';
+    }, 50);
+    return;
+  }
+  
+  // Normal transition
   currentTranslate = currentIndex * -(cardWidth + gap);
   track.style.transform = `translateX(${currentTranslate}px)`;
 }
 
-function handleInfiniteScroll() {
-  // Wrap around to beginning
-  if (currentIndex >= totalCards) {
-    currentIndex = 0;
-  }
-  // Wrap around to end
-  if (currentIndex < 0) {
-    currentIndex = totalCards - 1;
-  }
-}
-
+// Navigation buttons
 nextBtn.addEventListener('click', () => {
   currentIndex++;
-  handleInfiniteScroll();
   setPositionByIndex();
   prevTranslate = currentTranslate;
 });
 
 prevBtn.addEventListener('click', () => {
   currentIndex--;
-  handleInfiniteScroll();
   setPositionByIndex();
   prevTranslate = currentTranslate;
 });
 
-// Touch events
+// Touch events for mobile
 track.addEventListener('touchstart', (e) => {
   isDragging = true;
   startPos = e.touches[0].clientX;
@@ -76,19 +93,19 @@ track.addEventListener('touchend', (e) => {
   isDragging = false;
   const movedBy = currentTranslate - prevTranslate;
   
+  // Determine direction based on swipe distance
   if (movedBy < -100) {
     currentIndex++;
   } else if (movedBy > 100) {
     currentIndex--;
   }
   
-  handleInfiniteScroll();
   setPositionByIndex();
   prevTranslate = currentTranslate;
   track.style.cursor = 'grab';
 });
 
-// Mouse events
+// Mouse events for desktop
 track.addEventListener('mousedown', (e) => {
   isDragging = true;
   startPos = e.clientX;
@@ -107,13 +124,13 @@ track.addEventListener('mouseup', () => {
   isDragging = false;
   const movedBy = currentTranslate - prevTranslate;
   
+  // Determine direction based on drag distance
   if (movedBy < -100) {
     currentIndex++;
   } else if (movedBy > 100) {
     currentIndex--;
   }
   
-  handleInfiniteScroll();
   setPositionByIndex();
   prevTranslate = currentTranslate;
   track.style.cursor = 'grab';
@@ -128,10 +145,10 @@ track.addEventListener('mouseleave', () => {
   }
 });
 
-// Prevent default drag behavior
+// Prevent default drag behavior on images
 track.addEventListener('dragstart', (e) => e.preventDefault());
 
-// Resize handler
+// Recalculate positions on window resize
 window.addEventListener('resize', () => {
   setPositionByIndex();
 });
