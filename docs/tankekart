@@ -49,12 +49,42 @@ legge til:
 - pop up ved insendt kontaktskjema, "takk for at du tok kontakt, jeg svarer så fort jeg kan" etc. 
 - browser ikon
 - nettsikkerhet
+- Lag QR-kode til nettsiden (gratis på qr-code-generator.com)
 
 fikse:
 - karusell for anmeldelser
 - karusell på hero banner
+- funksjon for velg pakke knapp?
 - Komprimer alle bilder (bruk TinyPNG eller Squoosh) for å optimalisere hastighet
 - accessibility
  - legge til alt-tekst på bilder
+ - Aria-labels på knapper
  - sikre at alle interaktive elementer er tilgjengelige med tastatur
  - bruke semantisk HTML for bedre skjermleserstøtte
+ - test med WAVE Web Accessibility Tool 
+
+
+
+
+Testing før publisering:
+Test på:
+
+✅ Chrome (Desktop + Mobile view)
+✅ Safari (iPhone hvis mulig)
+✅ Firefox
+✅ Edge
+
+Sjekk:
+
+✅ Alle lenker fungerer
+✅ Kontaktskjema sender
+✅ Bilder lastes inn
+✅ Responsive design på alle størrelser
+✅ Dark mode fungerer
+✅ Carousel fungerer (swipe + knapper)
+
+Bruk disse verktøyene:
+
+Google PageSpeed Insights - Hastighet
+GTmetrix - Performance
+BrowserStack - Test på ekte enheter (gratis trial)
