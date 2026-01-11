@@ -1,247 +1,226 @@
-// Theme toggle functionality
-const themeToggle = document.getElementById('theme-toggle');
-const html = document.documentElement;
 
-// Check for saved theme preference or default to light mode
-const currentTheme = localStorage.getItem('theme') || 'light';
-html.classList.toggle('dark', currentTheme === 'dark');
+/* =================================================================
+   TESTIMONIALS CAROUSEL
+   ================================================================= */
 
-themeToggle.addEventListener('click', () => {
-  html.classList.toggle('dark');
-  const theme = html.classList.contains('dark') ? 'dark' : 'light';
-  localStorage.setItem('theme', theme);
-});
-
-// Testimonial carousel with infinite scroll
-const track = document.querySelector('.testimonial-track');
-const cards = document.querySelectorAll('.testimonial-card');
+const testimonialTrack = document.querySelector('.testimonial-track');
 const prevBtn = document.querySelector('.carousel-btn.prev');
 const nextBtn = document.querySelector('.carousel-btn.next');
+const testimonialCards = Array.from(document.querySelectorAll('.testimonial-card'));
 
-let currentIndex = 0;
-let isDragging = false;
-let startPos = 0;
-let currentTranslate = 0;
-let prevTranslate = 0;
+let currentTestimonialIndex = 0;
 
-const cardWidth = cards[0].offsetWidth;
-const gap = 40; // 2.5rem = 40px
-const totalCards = cards.length;
-
-// Set carousel position based on current index
-function setPositionByIndex() {
-  // Jump to start when reaching the end
-  if (currentIndex >= totalCards) {
-    track.style.transition = 'none';
-    currentIndex = 0;
-    currentTranslate = 0;
-    track.style.transform = `translateX(0px)`;
-    
-    // Re-enable transition after one frame
-    setTimeout(() => {
-      track.style.transition = 'transform 0.5s ease';
-    }, 50);
-    return;
+function scrollToTestimonial(index) {
+  const card = testimonialCards[index];
+  if (card) {
+    card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    currentTestimonialIndex = index;
   }
-  
-  // Jump to end when going back from start
-  if (currentIndex < 0) {
-    track.style.transition = 'none';
-    currentIndex = totalCards - 1;
-    currentTranslate = currentIndex * -(cardWidth + gap);
-    track.style.transform = `translateX(${currentTranslate}px)`;
-    
-    setTimeout(() => {
-      track.style.transition = 'transform 0.5s ease';
-    }, 50);
-    return;
-  }
-  
-  // Normal transition
-  currentTranslate = currentIndex * -(cardWidth + gap);
-  track.style.transform = `translateX(${currentTranslate}px)`;
 }
 
-// Navigation buttons
-nextBtn.addEventListener('click', () => {
-  currentIndex++;
-  setPositionByIndex();
-  prevTranslate = currentTranslate;
-});
+if (nextBtn) {
+  nextBtn.addEventListener('click', () => {
+    currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonialCards.length;
+    scrollToTestimonial(currentTestimonialIndex);
+  });
+}
 
-prevBtn.addEventListener('click', () => {
-  currentIndex--;
-  setPositionByIndex();
-  prevTranslate = currentTranslate;
-});
+if (prevBtn) {
+  prevBtn.addEventListener('click', () => {
+    currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonialCards.length) % testimonialCards.length;
+    scrollToTestimonial(currentTestimonialIndex);
+  });
+}
 
-// Touch events for mobile
-track.addEventListener('touchstart', (e) => {
-  isDragging = true;
-  startPos = e.touches[0].clientX;
-  track.style.cursor = 'grabbing';
-});
+// Touch/swipe support for testimonials
+let testimonialTouchStartX = 0;
+let testimonialTouchEndX = 0;
 
-track.addEventListener('touchmove', (e) => {
-  if (!isDragging) return;
-  const currentPosition = e.touches[0].clientX;
-  const diff = currentPosition - startPos;
-  track.style.transform = `translateX(${prevTranslate + diff}px)`;
-});
+if (testimonialTrack) {
+  testimonialTrack.addEventListener('touchstart', (e) => {
+    testimonialTouchStartX = e.touches[0].clientX;
+  });
 
-track.addEventListener('touchend', (e) => {
-  isDragging = false;
-  const movedBy = currentTranslate - prevTranslate;
-  
-  // Determine direction based on swipe distance
-  if (movedBy < -100) {
-    currentIndex++;
-  } else if (movedBy > 100) {
-    currentIndex--;
+  testimonialTrack.addEventListener('touchend', (e) => {
+    testimonialTouchEndX = e.changedTouches[0].clientX;
+    handleTestimonialSwipe();
+  });
+}
+
+function handleTestimonialSwipe() {
+  const swipeThreshold = 50;
+  const diff = testimonialTouchStartX - testimonialTouchEndX;
+
+  if (Math.abs(diff) > swipeThreshold) {
+    if (diff > 0) {
+      // Swipe left - next
+      currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonialCards.length;
+    } else {
+      // Swipe right - prev
+      currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonialCards.length) % testimonialCards.length;
+    }
+    scrollToTestimonial(currentTestimonialIndex);
   }
-  
-  setPositionByIndex();
-  prevTranslate = currentTranslate;
-  track.style.cursor = 'grab';
-});
+}
 
-// Mouse events for desktop
-track.addEventListener('mousedown', (e) => {
-  isDragging = true;
-  startPos = e.clientX;
-  track.style.cursor = 'grabbing';
-});
+/* =================================================================
+   ABOUT SECTION IMAGE CAROUSEL
+   ================================================================= */
 
-track.addEventListener('mousemove', (e) => {
-  if (!isDragging) return;
-  e.preventDefault();
-  const currentPosition = e.clientX;
-  const diff = currentPosition - startPos;
-  track.style.transform = `translateX(${prevTranslate + diff}px)`;
-});
+function initAboutCarousel() {
+  const container = document.querySelector('.about-carousel-container');
+  if (!container) return;
 
-track.addEventListener('mouseup', () => {
-  isDragging = false;
-  const movedBy = currentTranslate - prevTranslate;
-  
-  // Determine direction based on drag distance
-  if (movedBy < -100) {
-    currentIndex++;
-  } else if (movedBy > 100) {
-    currentIndex--;
+  const track = container.querySelector('.about-carousel-track');
+  const slides = Array.from(track.children);
+  const prevBtn = container.querySelector('.about-carousel-btn.prev');
+  const nextBtn = container.querySelector('.about-carousel-btn.next');
+  const dotsContainer = container.querySelector('.about-carousel-dots');
+
+  if (slides.length === 0) return;
+
+  let currentIndex = 0;
+
+  // Create dots
+  slides.forEach((_, index) => {
+    const dot = document.createElement('button');
+    dot.classList.add('carousel-dot');
+    if (index === 0) dot.classList.add('active');
+    dot.setAttribute('aria-label', `Gå til bilde ${index + 1}`);
+    dot.addEventListener('click', () => goToSlide(index));
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = Array.from(dotsContainer.children);
+
+  function updateCarousel() {
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    
+    // Update dots
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentIndex);
+    });
   }
-  
-  setPositionByIndex();
-  prevTranslate = currentTranslate;
-  track.style.cursor = 'grab';
-});
 
-track.addEventListener('mouseleave', () => {
-  if (isDragging) {
-    isDragging = false;
-    setPositionByIndex();
-    prevTranslate = currentTranslate;
-    track.style.cursor = 'grab';
+  function goToSlide(index) {
+    currentIndex = index;
+    updateCarousel();
   }
-});
 
-// Prevent default drag behavior on images
-track.addEventListener('dragstart', (e) => e.preventDefault());
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateCarousel();
+  }
 
-// Recalculate positions on window resize
-window.addEventListener('resize', () => {
-  setPositionByIndex();
-});
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateCarousel();
+  }
 
+  // Event listeners
+  if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+  if (prevBtn) prevBtn.addEventListener('click', prevSlide);
 
+  // Touch support
+  let touchStartX = 0;
+  let touchEndX = 0;
 
+  track.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+  });
 
+  track.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].clientX;
+    handleSwipe();
+  });
 
-// Form validation and success popup
-const form = document.querySelector('form[name="contact"]');
-const navnInput = document.getElementById('navn');
-const epostInput = document.getElementById('epost');
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    const diff = touchStartX - touchEndX;
 
-if (form) {
-  form.addEventListener('submit', (e) => {
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    }
+  }
+
+  // Auto-play (optional)
+  let autoplayInterval;
+  
+  function startAutoplay() {
+    autoplayInterval = setInterval(nextSlide, 5000);
+  }
+
+  function stopAutoplay() {
+    clearInterval(autoplayInterval);
+  }
+
+  // Start autoplay
+  startAutoplay();
+
+  // Pause on hover
+  container.addEventListener('mouseenter', stopAutoplay);
+  container.addEventListener('mouseleave', startAutoplay);
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', initAboutCarousel);
+
+/* =================================================================
+   FORM VALIDATION
+   ================================================================= */
+
+const contactForm = document.querySelector('form[name="contact"]');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
     let isValid = true;
 
-    // Validate navn (fornavn eller fornavn + etternavn)
+    // Clear previous errors
+    document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+
+    // Validate name
+    const navnInput = document.getElementById('navn');
     const navnPattern = /^[A-Za-zÆØÅæøå\s]{2,}(\s[A-Za-zÆØÅæøå\s]{2,})?$/;
     if (!navnPattern.test(navnInput.value.trim())) {
+      document.getElementById('navn-error').textContent = 'Vennligst skriv minst fornavn (2+ bokstaver)';
       isValid = false;
-      document.getElementById('navn-error').textContent = 'Skriv minst fornavn (2+ bokstaver)';
-    } else {
-      document.getElementById('navn-error').textContent = '';
     }
 
     // Validate email
+    const epostInput = document.getElementById('epost');
     const epostPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!epostPattern.test(epostInput.value.trim())) {
+      document.getElementById('epost-error').textContent = 'Vennligst skriv en gyldig e-postadresse';
       isValid = false;
-      document.getElementById('epost-error').textContent = 'Skriv en gyldig e-postadresse';
-    } else {
-      document.getElementById('epost-error').textContent = '';
     }
 
     if (!isValid) {
       e.preventDefault();
-    } else {
-      // Show success popup after form submission
-      e.preventDefault();
-      
-      // Submit form data
-      const formData = new FormData(form);
-      
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData).toString()
-      })
-      .then(() => {
-        showSuccessPopup();
-        form.reset();
-      })
-      .catch((error) => {
-        alert('Noe gikk galt. Prøv igjen.');
+    }
+  });
+}
+
+/* =================================================================
+   SMOOTH SCROLL FOR NAVIGATION LINKS
+   ================================================================= */
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      const headerOffset = 80;
+      const elementPosition = target.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
       });
     }
   });
-
-  // Real-time validation feedback
-  navnInput.addEventListener('input', () => {
-    document.getElementById('navn-error').textContent = '';
-  });
-
-  epostInput.addEventListener('input', () => {
-    document.getElementById('epost-error').textContent = '';
-  });
-}
-
-// Success popup
-function showSuccessPopup() {
-  const popup = document.createElement('div');
-  popup.className = 'success-popup';
-  popup.innerHTML = `
-    <div class="success-popup-content">
-      <div class="success-icon">✓</div>
-      <h3>Takk for at du tok kontakt!</h3>
-      <p>Jeg svarer deg så snart som mulig.</p>
-      <button class="btn-primary" onclick="closeSuccessPopup()">Lukk</button>
-    </div>
-  `;
-  document.body.appendChild(popup);
-  
-  // Fade in
-  setTimeout(() => {
-    popup.classList.add('show');
-  }, 10);
-}
-
-function closeSuccessPopup() {
-  const popup = document.querySelector('.success-popup');
-  popup.classList.remove('show');
-  setTimeout(() => {
-    popup.remove();
-  }, 300);
-}
+});

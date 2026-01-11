@@ -51,69 +51,52 @@
       <a href="#anbefalinger">Anbefalinger</a>
       <a href="#om">Om meg</a>
       <a href="#tjenester">Tjenester</a>
-      <a href="#priser">Priser</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
 
-    <button id="theme-toggle" aria-label="Bytt til mørk eller lys modus">
-      <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="5"/>
-        <line x1="12" y1="1" x2="12" y2="3"/>
-        <line x1="12" y1="21" x2="12" y2="23"/>
-        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-        <line x1="1" y1="12" x2="3" y2="12"/>
-        <line x1="21" y1="12" x2="23" y2="12"/>
-        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-      </svg>
-      <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-      </svg>
-    </button>
   </div>
 </header>
 
 <main>
-  <!-- HERO SECTION with full-bleed image -->
-  <section class="hero-fullscreen">
-    <div class="hero-image-wrapper">
-      <img src="assets/portrait.webp" alt="Linn Røymstad – personlig trener" />
-      <div class="hero-overlay"></div>
-    </div>
-    <div class="hero-content">
+  <!-- HERO SECTION with split layout -->
+  <section class="hero-split">
+    <div class="hero-split-content">
       <div class="hero-eyebrow">Velkommen</div>
       <h1>Opplev mestring med trening, og få det som livsstil</h1>
       <p>Målrettet og mestringsorientert trening tilpasset deg og det nivået du er på nå. Tilrettelegging for å nå dit du ønsker.</p>
       <a href="#kontakt" class="btn-primary">Book uforpliktende prat →</a>
     </div>
     
-    <!-- Scrolling keywords banner -->
-    <div class="keywords-banner">
-      <div class="keywords-track">
-        <span>Styrke</span>
-        <span>◆</span>
-        <span>Utholdenhet</span>
-        <span>◆</span>
-        <span>Kontroll</span>
-        <span>◆</span>
-        <span>Mobilitet</span>
-        <span>◆</span>
-        <span>Balanse</span>
-        <span>◆</span>
-        <span>Styrke</span>
-        <span>◆</span>
-        <span>Utholdenhet</span>
-        <span>◆</span>
-        <span>Kontroll</span>
-        <span>◆</span>
-        <span>Mobilitet</span>
-        <span>◆</span>
-        <span>Balanse</span>
-        <span>◆</span>
-      </div>
+    <div class="hero-split-image">
+      <img src="assets/portrait.webp" alt="Linn Røymstad – personlig trener" />
     </div>
   </section>
+
+  <!-- Scrolling keywords banner -->
+  <div class="keywords-banner">
+    <div class="keywords-track">
+      <span>Styrke</span>
+      <span>◆</span>
+      <span>Utholdenhet</span>
+      <span>◆</span>
+      <span>Kontroll</span>
+      <span>◆</span>
+      <span>Mobilitet</span>
+      <span>◆</span>
+      <span>Balanse</span>
+      <span>◆</span>
+      <span>Styrke</span>
+      <span>◆</span>
+      <span>Utholdenhet</span>
+      <span>◆</span>
+      <span>Kontroll</span>
+      <span>◆</span>
+      <span>Mobilitet</span>
+      <span>◆</span>
+      <span>Balanse</span>
+      <span>◆</span>
+    </div>
+  </div>
 
   <div class="container">
 
@@ -175,7 +158,7 @@
       </div>
     </section>
 
-    <!-- ABOUT SECTION -->
+    <!-- ABOUT SECTION with image carousel -->
     <section id="om" class="about-section">
       <div class="section-header">
         <span class="eyebrow">Min bakgrunn</span>
@@ -196,6 +179,36 @@
               Med bakgrunn fra styrkeløft og fitness, samt bred kompetanse innen rehabilitering, kosthold og bevegelsesanalyse, skaper hun målrettet og tilpasset trening som gir resultater og varig motivasjon.
             </p>
           </div>
+
+          <!-- Image Carousel -->
+          <div class="about-carousel-container">
+            <button class="about-carousel-btn prev" aria-label="Forrige bilde">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <button class="about-carousel-btn next" aria-label="Neste bilde">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+
+            <div class="about-carousel-track">
+              <div class="about-carousel-slide">
+                <img src="assets/mountain-view.jpeg" alt="Fjelltur" />
+              </div>
+              <div class="about-carousel-slide">
+                <img src="assets/beach-yoga.jpeg" alt="Strand trening" />
+              </div>
+              <div class="about-carousel-slide">
+                <img src="assets/sunset-run.jpeg" alt="Trening i solnedgang" />
+              </div>
+              <!-- Add more images as needed -->
+            </div>
+
+            <div class="about-carousel-dots"></div>
+          </div>
+
           <div class="about-stats">
             <div class="stat-item">
               <div class="stat-number">10+</div>
@@ -257,59 +270,10 @@
             </ul>
           </div>
         </a>
-
-        <a href="#kontakt" class="service-card-link">
-          <div class="service-card">
-            <h3>Kostholdsveiledning</h3>
-            <p>Kostholdsplan og oppskrifter tilpasset dine mål.</p>
-            <ul class="service-features">
-              <li>✓ Tilgang til oppskrifter</li>
-              <li>✓ Ukentlige kostholdsplaner</li>
-              <li>✓ Raske justeringer</li>
-            </ul>
-          </div>
-        </a>
       </div>
-    </section>
 
-    <!-- PRICING -->
-    <section id="priser" class="pricing-section">
-      <div class="section-header">
-        <span class="eyebrow">Invester i deg selv</span>
-        <h2>Priser & pakker</h2>
-        <p class="section-subtitle">Velg pakken som passer deg best</p>
-      </div>
-      
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <h3>Kom-i-gang-pakke</h3>
-          <div class="price-tag">
-            <span class="price">2 290 kr</span>
-            <span class="price-period">engangspris</span>
-          </div>
-          <p class="pricing-desc">3 PT-timer + personlig program</p>
-          <a href="#kontakt" class="btn-primary">Velg pakke →</a>
-        </div>
-
-        <div class="pricing-card">
-          <h3>3-måneders oppfølging</h3>
-          <div class="price-tag">
-            <span class="price">5 990 kr</span>
-            <span class="price-period">totalt</span>
-          </div>
-          <p class="pricing-desc">8 PT-timer + kontinuerlig støtte over 3 måneder</p>
-          <a href="#kontakt" class="btn-primary">Velg pakke →</a>
-        </div>
-
-        <div class="pricing-card">
-          <h3>Online Coaching</h3>
-          <div class="price-tag">
-            <span class="price">999 kr</span>
-            <span class="price-period">per måned</span>
-          </div>
-          <p class="pricing-desc">Fleksibelt og rimelig – avbestill når som helst</p>
-          <a href="#kontakt" class="btn-primary">Velg pakke →</a>
-        </div>
+      <div class="services-pricing-note">
+        <p>Ny kunde med kartleggingssamtale: <strong>2350 kr</strong> | Oppfølging etter første måned: <strong>1850 kr/måned</strong></p>
       </div>
     </section>
 
