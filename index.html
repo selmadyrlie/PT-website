@@ -9,12 +9,6 @@
   <link rel="preload" href="styles.css" as="style">
   <link rel="preload" href="assets/portrait.webp" as="image">
 
-  <!-- Security headers -->
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="X-Frame-Options" content="DENY">
-  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-
   <!-- SEO Meta Tags -->
   <meta name="keywords" content="personlig trener oslo, PT oslo, online coaching, treningsprogram, kostholdsveiledning, fitness oslo, styrketrening">
   <meta name="author" content="Linn Røymstad">
@@ -53,7 +47,6 @@
       <a href="#tjenester">Tjenester</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
-
   </div>
 </header>
 
@@ -152,13 +145,11 @@
               </div>
             </div>
           </div>
-
-          
         </div>
       </div>
     </section>
 
-    <!-- ABOUT SECTION with image carousel -->
+    <!-- ABOUT SECTION - Two columns: Left (text + carousel), Right (CV) -->
     <section id="om" class="about-section">
       <div class="section-header">
         <span class="eyebrow">Min bakgrunn</span>
@@ -170,57 +161,124 @@
           "Opplev mestring med trening, og få det som livsstil"
         </p>
         
-        <div class="about-grid">
-          <div class="about-text">
-            <p>
-              Linn har over ti års erfaring som personlig trener. Med en helhetlig tilnærming til trening og livsstil, brenner hun for å hjelpe mennesker med å finne mestring og glede i egen utvikling – uansett utgangspunkt.
-            </p>
-            <p>
-              Med bakgrunn fra styrkeløft og fitness, samt bred kompetanse innen rehabilitering, kosthold og bevegelsesanalyse, skaper hun målrettet og tilpasset trening som gir resultater og varig motivasjon.
-            </p>
+        <div class="about-two-column">
+          <!-- LEFT COLUMN: Text and Carousel -->
+          <div class="about-left">
+            <div class="about-text">
+              <p>
+                Linn har over ti års erfaring som personlig trener. Med en helhetlig tilnærming til trening og livsstil, brenner hun for å hjelpe mennesker med å finne mestring og glede i egen utvikling – uansett utgangspunkt.
+              </p>
+              <p>
+                Med bakgrunn fra styrkeløft og fitness, samt bred kompetanse innen rehabilitering, kosthold og bevegelsesanalyse, skaper hun målrettet og tilpasset trening som gir resultater og varig motivasjon.
+              </p>
+            </div>
+
+            <!-- Image Carousel -->
+            <div class="about-carousel-container">
+              <button class="about-carousel-btn prev" aria-label="Forrige bilde">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+              </button>
+              <button class="about-carousel-btn next" aria-label="Neste bilde">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+
+              <div class="about-carousel-track">
+                <div class="about-carousel-slide">
+                  <img src="assets/mountain-view.jpeg" alt="Fjelltur" />
+                </div>
+                <div class="about-carousel-slide">
+                  <img src="assets/beach-yoga.jpeg" alt="Strand trening" />
+                </div>
+              </div>
+
+              <div class="about-carousel-dots"></div>
+            </div>
+
+            <div class="about-stats">
+              <div class="stat-item">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Års erfaring</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">10,000+</div>
+                <div class="stat-label">PT-timer siden 2013</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Skreddersydd tilpasning</div>
+              </div>
+            </div>
           </div>
 
-          <!-- Image Carousel -->
-          <div class="about-carousel-container">
-            <button class="about-carousel-btn prev" aria-label="Forrige bilde">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="15 18 9 12 15 6"></polyline>
-              </svg>
-            </button>
-            <button class="about-carousel-btn next" aria-label="Neste bilde">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </button>
+          <!-- RIGHT COLUMN: CV -->
+          <div class="about-right">
+            <div class="cv-section">
+              <h3>Erfaring & Kvalifikasjoner</h3>
+              
+              <div class="cv-block">
+                <h4>Utdanning</h4>
+                
+                <div class="cv-item">
+                  <strong>Rehab Trainer</strong>
+                  <span>Active Education</span>
+                </div>
 
-            <div class="about-carousel-track">
-              <div class="about-carousel-slide">
-                <img src="assets/mountain-view.jpeg" alt="Fjelltur" />
-              </div>
-              <div class="about-carousel-slide">
-                <img src="assets/beach-yoga.jpeg" alt="Strand trening" />
-              </div>
-              <div class="about-carousel-slide">
-                <img src="assets/sunset-run.jpeg" alt="Trening i solnedgang" />
-              </div>
-              <!-- Add more images as needed -->
-            </div>
+                <div class="cv-item">
+                  <strong>Personlig Trener</strong>
+                  <span>Active Education</span>
+                </div>
 
-            <div class="about-carousel-dots"></div>
-          </div>
+                <div class="cv-item">
+                  <strong>Bachelor i kultur og samfunnsfag</strong>
+                  <span>Universitetet i Oslo</span>
+                </div>
 
-          <div class="about-stats">
-            <div class="stat-item">
-              <div class="stat-number">10+</div>
-              <div class="stat-label">Års erfaring</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-number">10,000+</div>
-              <div class="stat-label">PT-timer siden 2013</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-number">100%</div>
-              <div class="stat-label">Skreddersydd tilpasning</div>
+                <div class="cv-item">
+                  <strong>Årsstudium i idrett</strong>
+                  <span>Universitetet i Stavanger</span>
+                </div>
+              </div>
+
+              <div class="cv-block">
+                <h4>Erfaring</h4>
+                
+                <div class="cv-item">
+                  <strong>Personlig Trener</strong>
+                  <span>EVO Nydalen (2017 - nå)</span>
+                </div>
+
+                <div class="cv-item">
+                  <strong>Personlig Trener</strong>
+                  <span>SATS Nydalen (2013-2017)</span>
+                </div>
+              </div>
+
+              <div class="cv-highlight">
+                <h5>Spesialisering</h5>
+                <ul>
+                  <li>CAFS – Applied Functional Science</li>
+                  <li>Anatomy Trains in Motion</li>
+                  <li>3D MAPS</li>
+                  <li>The Female Athlete</li>
+                  <li>Biomekanikk og avansert øvelsesanalyse</li>
+                  <li>Coaching Practitioner</li>
+                </ul>
+              </div>
+
+              <div class="cv-highlight">
+                <h5>Faglig kompetanse</h5>
+                <ul>
+                  <li>Styrketrening & mestringsopplevelse</li>
+                  <li>Rehabilitering og skadeforebygging</li>
+                  <li>Bevegelsesanalyse og funksjonell biomekanikk</li>
+                  <li>Coaching, pedagogikk og motivasjon</li>
+                  <li>Kostholdsveiledning</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -345,7 +403,7 @@
             <div class="contact-item">
               <div>
                 <div class="contact-label">Telefon</div>
-                <a href="tel:+4799999999">+47 999 99 999</a>
+                <a href="tel:+4799104133">+47 991 04 133</a>
               </div>
             </div>
 

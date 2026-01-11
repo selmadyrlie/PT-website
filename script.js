@@ -1,42 +1,65 @@
+/* =================================================================
+   THEME TOGGLE
+   ================================================================= */
+
+const themeToggle = document.getElementById('theme-toggle');
+const html = document.documentElement;
+
+// Check for saved theme preference or default to light mode
+const currentTheme = localStorage.getItem('theme') || 'light';
+html.setAttribute('data-theme', currentTheme);
+
+themeToggle.addEventListener('click', () => {
+  const theme = html.getAttribute('data-theme');
+  const newTheme = theme === 'light' ? 'dark' : 'light';
+  
+  html.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+});
 
 /* =================================================================
    TESTIMONIALS CAROUSEL
    ================================================================= */
 
-const testimonialTrack = document.querySelector('.testimonial-track');
-const prevBtn = document.querySelector('.carousel-btn.prev');
-const nextBtn = document.querySelector('.carousel-btn.next');
-const testimonialCards = Array.from(document.querySelectorAll('.testimonial-card'));
+function initTestimonialsCarousel() {
+  const testimonialTrack = document.querySelector('.testimonial-track');
+  const prevBtn = document.querySelector('.carousel-container .carousel-btn.prev');
+  const nextBtn = document.querySelector('.carousel-container .carousel-btn.next');
+  const testimonialCards = Array.from(document.querySelectorAll('.testimonial-card'));
 
-let currentTestimonialIndex = 0;
-
-function scrollToTestimonial(index) {
-  const card = testimonialCards[index];
-  if (card) {
-    card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-    currentTestimonialIndex = index;
+  if (!testimonialTrack || testimonialCards.length === 0) {
+    console.log('Testimonials carousel elements not found');
+    return;
   }
-}
 
-if (nextBtn) {
-  nextBtn.addEventListener('click', () => {
-    currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonialCards.length;
-    scrollToTestimonial(currentTestimonialIndex);
-  });
-}
+  let currentTestimonialIndex = 0;
 
-if (prevBtn) {
-  prevBtn.addEventListener('click', () => {
-    currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonialCards.length) % testimonialCards.length;
-    scrollToTestimonial(currentTestimonialIndex);
-  });
-}
+  function scrollToTestimonial(index) {
+    const card = testimonialCards[index];
+    if (card) {
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      currentTestimonialIndex = index;
+    }
+  }
 
-// Touch/swipe support for testimonials
-let testimonialTouchStartX = 0;
-let testimonialTouchEndX = 0;
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonialCards.length;
+      scrollToTestimonial(currentTestimonialIndex);
+    });
+  }
 
-if (testimonialTrack) {
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonialCards.length) % testimonialCards.length;
+      scrollToTestimonial(currentTestimonialIndex);
+    });
+  }
+
+  // Touch/swipe support for testimonials
+  let testimonialTouchStartX = 0;
+  let testimonialTouchEndX = 0;
+
   testimonialTrack.addEventListener('touchstart', (e) => {
     testimonialTouchStartX = e.touches[0].clientX;
   });
@@ -45,22 +68,24 @@ if (testimonialTrack) {
     testimonialTouchEndX = e.changedTouches[0].clientX;
     handleTestimonialSwipe();
   });
-}
 
-function handleTestimonialSwipe() {
-  const swipeThreshold = 50;
-  const diff = testimonialTouchStartX - testimonialTouchEndX;
+  function handleTestimonialSwipe() {
+    const swipeThreshold = 50;
+    const diff = testimonialTouchStartX - testimonialTouchEndX;
 
-  if (Math.abs(diff) > swipeThreshold) {
-    if (diff > 0) {
-      // Swipe left - next
-      currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonialCards.length;
-    } else {
-      // Swipe right - prev
-      currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonialCards.length) % testimonialCards.length;
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) {
+        // Swipe left - next
+        currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonialCards.length;
+      } else {
+        // Swipe right - prev
+        currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonialCards.length) % testimonialCards.length;
+      }
+      scrollToTestimonial(currentTestimonialIndex);
     }
-    scrollToTestimonial(currentTestimonialIndex);
   }
+
+  console.log('Testimonials carousel initialized with', testimonialCards.length, 'cards');
 }
 
 /* =================================================================
@@ -69,15 +94,24 @@ function handleTestimonialSwipe() {
 
 function initAboutCarousel() {
   const container = document.querySelector('.about-carousel-container');
-  if (!container) return;
+  
+  if (!container) {
+    console.log('About carousel container not found');
+    return;
+  }
 
   const track = container.querySelector('.about-carousel-track');
-  const slides = Array.from(track.children);
+  const slides = Array.from(container.querySelectorAll('.about-carousel-slide'));
   const prevBtn = container.querySelector('.about-carousel-btn.prev');
   const nextBtn = container.querySelector('.about-carousel-btn.next');
   const dotsContainer = container.querySelector('.about-carousel-dots');
 
-  if (slides.length === 0) return;
+  if (slides.length === 0) {
+    console.log('No carousel slides found');
+    return;
+  }
+
+  console.log('About carousel found with', slides.length, 'slides');
 
   let currentIndex = 0;
 
@@ -118,8 +152,21 @@ function initAboutCarousel() {
   }
 
   // Event listeners
-  if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-  if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      nextSlide();
+      console.log('Next clicked, now at slide', currentIndex);
+    });
+  }
+  
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      prevSlide();
+      console.log('Prev clicked, now at slide', currentIndex);
+    });
+  }
 
   // Touch support
   let touchStartX = 0;
@@ -147,15 +194,19 @@ function initAboutCarousel() {
     }
   }
 
-  // Auto-play (optional)
+  // Auto-play
   let autoplayInterval;
   
   function startAutoplay() {
-    autoplayInterval = setInterval(nextSlide, 5000);
+    autoplayInterval = setInterval(() => {
+      nextSlide();
+    }, 5000);
   }
 
   function stopAutoplay() {
-    clearInterval(autoplayInterval);
+    if (autoplayInterval) {
+      clearInterval(autoplayInterval);
+    }
   }
 
   // Start autoplay
@@ -164,63 +215,87 @@ function initAboutCarousel() {
   // Pause on hover
   container.addEventListener('mouseenter', stopAutoplay);
   container.addEventListener('mouseleave', startAutoplay);
-}
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', initAboutCarousel);
+  console.log('About carousel initialized successfully');
+}
 
 /* =================================================================
    FORM VALIDATION
    ================================================================= */
 
-const contactForm = document.querySelector('form[name="contact"]');
+function initFormValidation() {
+  const contactForm = document.querySelector('form[name="contact"]');
 
-if (contactForm) {
-  contactForm.addEventListener('submit', (e) => {
-    let isValid = true;
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      let isValid = true;
 
-    // Clear previous errors
-    document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+      // Clear previous errors
+      document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
 
-    // Validate name
-    const navnInput = document.getElementById('navn');
-    const navnPattern = /^[A-Za-zÆØÅæøå\s]{2,}(\s[A-Za-zÆØÅæøå\s]{2,})?$/;
-    if (!navnPattern.test(navnInput.value.trim())) {
-      document.getElementById('navn-error').textContent = 'Vennligst skriv minst fornavn (2+ bokstaver)';
-      isValid = false;
-    }
+      // Validate name
+      const navnInput = document.getElementById('navn');
+      const navnPattern = /^[A-Za-zÆØÅæøå\s]{2,}(\s[A-Za-zÆØÅæøå\s]{2,})?$/;
+      if (navnInput && !navnPattern.test(navnInput.value.trim())) {
+        const errorEl = document.getElementById('navn-error');
+        if (errorEl) errorEl.textContent = 'Vennligst skriv minst fornavn (2+ bokstaver)';
+        isValid = false;
+      }
 
-    // Validate email
-    const epostInput = document.getElementById('epost');
-    const epostPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!epostPattern.test(epostInput.value.trim())) {
-      document.getElementById('epost-error').textContent = 'Vennligst skriv en gyldig e-postadresse';
-      isValid = false;
-    }
+      // Validate email
+      const epostInput = document.getElementById('epost');
+      const epostPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (epostInput && !epostPattern.test(epostInput.value.trim())) {
+        const errorEl = document.getElementById('epost-error');
+        if (errorEl) errorEl.textContent = 'Vennligst skriv en gyldig e-postadresse';
+        isValid = false;
+      }
 
-    if (!isValid) {
-      e.preventDefault();
-    }
-  });
+      if (!isValid) {
+        e.preventDefault();
+      }
+    });
+  }
 }
 
 /* =================================================================
    SMOOTH SCROLL FOR NAVIGATION LINKS
    ================================================================= */
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      const headerOffset = 80;
-      const elementPosition = target.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        const headerOffset = 80;
+        const elementPosition = target.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
   });
+}
+
+/* =================================================================
+   INITIALIZE ALL
+   ================================================================= */
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM loaded, initializing...');
+  initTestimonialsCarousel();
+  initAboutCarousel();
+  initFormValidation();
+  initSmoothScroll();
+  console.log('All initializations complete');
+});
+
+// Also try to initialize on window load (backup)
+window.addEventListener('load', () => {
+  console.log('Window loaded');
 });
