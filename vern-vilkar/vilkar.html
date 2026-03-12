@@ -7,7 +7,36 @@
   <link rel="stylesheet" href="personvern.css">
 </head>
 <body>
-<header><!-- Same as personvern.html --></header>
+<header>
+    <div class="container nav">
+    <a href="index.html" class="brand">
+      <div class="brand-logo">
+        <img src="assets/Linn-PT-logo.JPEG" alt="Linn Røymstad" />
+      </div>
+      <div>
+        <div class="brand-name">Linn Røymstad</div>
+        <div class="brand-subtitle">Personlig Trener</div>
+      </div>
+    </a>
+
+    <button id="theme-toggle" aria-label="Bytt til mørk eller lys modus">
+      <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/>
+        <line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/>
+        <line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+      <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+  </div>
+</header>
 
 <main>
   <div class="personvern-container">
@@ -17,15 +46,18 @@
 
     <div class="personvern-content">
       <h2>Avbestilling</h2>
-      <p>PT-timer kan avbestilles inntil 24 timer før avtalt tid. Ved senere avbestilling belastes full pris.</p>
+      <p>PT-timer kan avbestilles inntil 24 timer før avtalt tid. Dersom timen avlyses under 24 timer til oppsatt time, vil timen belastes i sin helhet</p>
 
-      <h2>Betalingsvilkår</h2>
-      <p>Pakker betales på forhånd via Vipps eller bankoverføring.</p>
+      <h2>Treningsprogram og oppfølging via app</h2>
+      <p>Avtalen må sies opp en måned i forkant av ønsket sluttdato.</p>
+
+      <h2>Online gruppetimer</h2>
+      <p>tilgang til 8 ukers kursrunde. Ved kursrundend slutt vil du fjernes i fra gruppen dersom du ikke fornyer tilgang</p>
 
       <h2>Ansvar</h2>
       <p>Trening skjer på eget ansvar. Ved skade eller sykdom, konsulter lege før du starter trening.</p>
 
-      <a href="index.html" class="back-link">Tilbake til forsiden</a>
+      <a href="../index.html" class="back-link">Tilbake til forsiden</a>
     </div>
   </div>
 </main>
